@@ -5,10 +5,12 @@ on:
     paths:
       - ".github/workflows/build.yml"
       - "app/**"
+      - "config/shields/**"
   pull_request:
     paths:
       - ".github/workflows/build.yml"
       - "app/**"
+      - "config/shields/**"
   schedule:
     - cron: "22 4 * * *"
 
@@ -27,7 +29,9 @@ jobs:
     needs: compile-matrix
     strategy:
       matrix:
-        include: ${{ fromJSON(needs.compile-matrix.outputs.include-list) }}
+        include:
+          - board: splity
+            shieldArgs: '[{"shield": "splity"}]'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
