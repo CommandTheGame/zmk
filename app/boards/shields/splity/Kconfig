@@ -1,0 +1,4 @@
+config SHIELD_SPLITY
+    bool "Splity"
+    depends on BOARD_NICE_NANO_V2
+    default y
